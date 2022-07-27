@@ -2,6 +2,8 @@
 
 ***a digital version of Oclef's standards matrix.***
 
+you can grab a copy of the PWA [here](https://papaya-tartufo-d6afb1.netlify.app/), it works correctly for both mobile and desktop layouts.
+
 ### running it locally
 
 1. install dependencies with `npm install`
