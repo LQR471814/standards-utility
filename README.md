@@ -1,6 +1,6 @@
 ## standards-utility
 
-***a digital version of Oclef's standards matrix.***
+***a digital practice app***
 
 you can grab a copy of the PWA [here](https://papaya-tartufo-d6afb1.netlify.app/), it works correctly for both mobile and desktop layouts.
 
