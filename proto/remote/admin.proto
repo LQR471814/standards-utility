@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+import "local/generic.proto";
+import "remote/common.proto";
+
+service Public {
+    rpc Info(Empty) returns (Organization);
+}
+
+message LogStreamRequest {
+    Context context = 1;
+    string target = 2;
+}
+
+message LogPacket {
+    Status status = 1;
+    SectionOperation operation = 2;
+}
+
+message LogsRequest {
+    Context context = 1;
+    string target = 2;
+    Range range = 3;
+}
+
+message LogsResponse {
+    Status status = 1;
+    repeated SectionOperation operations = 2;
+}
+
+service Admin {
+    rpc LogStream(LogStreamRequest) returns (stream LogPacket);
+    rpc Logs(LogsRequest) returns (LogsResponse);
+}

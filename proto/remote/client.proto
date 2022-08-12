@@ -2,25 +2,11 @@ syntax = "proto3";
 
 import "local/generic.proto";
 import "local/data.proto";
+import "remote/common.proto";
 
 message Organization {
     string name = 1;
     bytes icon = 2;
-}
-
-enum Action {
-    CREATE = 1;
-    MODIFY = 2;
-    DELETE = 3;
-}
-
-message Status {
-    string message = 1;
-    bool error = 2;
-}
-
-message Context {
-    string token = 1;
 }
 
 message Index {
@@ -29,11 +15,8 @@ message Index {
 }
 
 message SectionChange {
-    Context Context = 1;
-
-    string pieceId = 2;
-    Action action = 3;
-    Section section = 4;
+    Context context = 1;
+    SectionOperation operation = 2;
 }
 
 service FromClient {

@@ -2,5 +2,16 @@
     "cSpell.words": [
         "proxify"
     ],
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
+    "protoc": {
+        "options": ["-I", "proto"]
+    },
+    "bazel.buildifierFixOnFormat": true,
+    "search.exclude": {
+        "bazel-*": true,
+        "src/proto/**": true,
+        "src-tauri/**": true,
+        "public/models/**": true,
+    },
+    "git.ignoreLimitWarning": true
 }

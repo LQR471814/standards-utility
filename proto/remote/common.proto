@@ -1,0 +1,27 @@
+message Status {
+    string message = 1;
+    bool error = 2;
+}
+
+message Context {
+    string token = 1;
+}
+
+enum Action {
+    CREATE = 1;
+    MODIFY = 2;
+    DELETE = 3;
+}
+
+message SectionOperation {
+    int64 time = 1;
+
+    string pieceId = 2;
+    Action action = 3;
+    Section section = 4;
+}
+
+message Range {
+    int64 start = 1;
+    int64 end = 2;
+}

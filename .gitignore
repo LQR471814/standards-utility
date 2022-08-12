@@ -1,4 +1,3 @@
-/build
 /public/models/web_model
 
 node_modules
@@ -10,3 +9,5 @@ pnpm-lock.yaml
 /src/dev-dist/
 
 *.log
+
+bazel-*/
