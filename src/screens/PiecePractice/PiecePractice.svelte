@@ -6,16 +6,15 @@
   import { makeContext } from "./state";
 
   import PieceViewer from "~/components/rendering/PieceViewer.svelte";
-  import Edit from "~/icons/Edit.svelte";
   import Position from "~/wrappers/Position.svelte";
   import WithBack from "~/wrappers/WithBack.svelte";
-  import Play from "~/icons/Play.svelte";
   import PanelIcon from "~/components/common/PanelIcon.svelte";
   import Adaptive from "~/components/common/Adaptive.svelte";
   import SectionCreation from "./SectionCreation.svelte";
   import MeasureRender from "./MeasureRender.svelte";
   import SectionPractice from "./SectionPractice.svelte";
   import Actionable from "~/components/common/Actionable.svelte";
+  import { Edit, Play } from "@steeze-ui/remix-icons";
 
   const dispatcher = createEventDispatcher<{ close: void }>();
 

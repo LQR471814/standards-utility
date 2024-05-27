@@ -8,7 +8,7 @@
   export let bare = false;
 </script>
 
-<div
+<button
   class={classList(
     "transition-all border-[1px] border-transparent",
     !bare ? "bg-slate-800 bg-opacity-20 shadow-lg" : "",
@@ -21,4 +21,4 @@
   on:click
 >
   <slot />
-</div>
+</button>

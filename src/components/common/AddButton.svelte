@@ -1,8 +1,9 @@
 <script lang="ts">
   import { classList } from "~/common/general";
-  import Add from "~/icons/Add.svelte";
+  import { Icon } from "@steeze-ui/svelte-icon";
+  import { Add } from "@steeze-ui/remix-icons";
 
-  export let labelFor: string
+  export let labelFor: string;
 </script>
 
 <label
@@ -14,6 +15,7 @@
     "active:translate-y-1"
   )}
   on:click
+  on:keydown
 >
-  <Add className="w-full h-full" />
+  <Icon src={Add} theme="solid" class="w-full h-full" />
 </label>

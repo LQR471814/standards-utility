@@ -111,7 +111,7 @@
       "transition-all mx-1 hover:cursor-pointer"
     )}
   >
-    <div
+    <button
       class={classList("centered w-full h-full transition-all")}
       on:click={onclick}
     >
@@ -121,7 +121,7 @@
           active ? "opacity-0" : ""
         )}
       />
-    </div>
+    </button>
     {#if active}
       {#if stats.completed.length < stats.number}
         <TaskStateRegion mode="up" on:drop={drophandler(true)} />

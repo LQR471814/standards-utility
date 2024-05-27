@@ -1,7 +1,7 @@
 <script lang="ts">
   import { fly } from "svelte/transition";
 
-  import { pieces } from "~/store/pieces";
+  import { pieces } from "~/state";
   import { Wrap } from "~/types/generic";
   import type { Piece } from "~/proto/local/data";
 
@@ -72,8 +72,6 @@
       image: new Uint8Array(await r2.arrayBuffer()),
       sections: [],
     });
-
-    pieces.load([p1, p2]);
   })();
 </script>
 

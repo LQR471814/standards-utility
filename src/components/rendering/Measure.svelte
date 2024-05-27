@@ -11,7 +11,7 @@
   export let hidden = false
 </script>
 
-<div
+<button
   class={classList(
     "h-full bg-slate-800 bg-opacity-30",
     "border-[1px] border-slate-600",

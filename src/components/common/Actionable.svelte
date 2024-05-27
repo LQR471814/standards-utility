@@ -6,7 +6,7 @@
   let hovered = false;
 </script>
 
-<div
+<button
   on:click={() => {
     if (isTouch()) {
       hovered = !hovered;
@@ -23,4 +23,4 @@
   }}
 >
   <slot {hovered} />
-</div>
+</button>

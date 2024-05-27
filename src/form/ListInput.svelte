@@ -5,10 +5,9 @@
   import { createEventDispatcher } from "svelte";
   import { classList, withoutElement } from "~/common/general";
 
-  import Add from "~/icons/Add.svelte";
-  import Remove from "~/icons/Remove.svelte";
-  import Menu from "~/icons/Menu.svelte";
   import Label from "~/form/Label.svelte";
+  import { Icon } from "@steeze-ui/svelte-icon";
+  import { Close, Menu, Add } from "@steeze-ui/remix-icons";
 
   type T = $$Generic;
 
@@ -30,12 +29,12 @@
 {#if showPresets && presets}
   <div class="py-2 px-4" in:fly={{ y: 10 }}>
     {#each Object.keys(presets) as k}
-      <div
+      <button
         on:click={() => {
           if (!presets) throw new Error("bad state");
           elements = cloneDeep(presets[k]);
-          dispatcher("update", elements)
-          showPresets = false
+          dispatcher("update", elements);
+          showPresets = false;
         }}
       >
         <Label
@@ -47,7 +46,7 @@
         >
           {k}
         </Label>
-      </div>
+      </button>
     {/each}
   </div>
 {:else}
@@ -58,14 +57,14 @@
       animate:flip={{ duration: 300 }}
     >
       <slot {e} {i} />
-      <div
+      <button
         on:click={() => {
           elements = withoutElement(elements, i);
           dispatcher("update", elements);
         }}
       >
-        <Remove className={classList(clickable, "ml-4")} />
-      </div>
+        <Icon src={Close} class={classList(clickable, "ml-4")} />
+      </button>
     </div>
   {/each}
 {/if}
@@ -74,16 +73,16 @@
   class={classList("my-2 flex", presets ? "justify-between" : "justify-end")}
 >
   {#if presets}
-    <div on:click={() => (showPresets = !showPresets)}>
-      <Menu className={clickable} />
-    </div>
+    <button on:click={() => (showPresets = !showPresets)}>
+      <Icon src={Menu} class={clickable} />
+    </button>
   {/if}
-  <div
+  <button
     on:click={() => {
       elements = [...elements, newElement()];
       dispatcher("update", elements);
     }}
   >
-    <Add className={clickable} />
-  </div>
+    <Icon src={Add} class={clickable} />
+  </button>
 </div>

@@ -1,14 +1,13 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
   import { fly } from "svelte/transition";
-  import { classList } from "~/common/general";
   import { isTouch } from "~/common/platform";
+  import { twMerge } from "tailwind-merge";
 
   import type { Section } from "~/proto/local/data";
   import { Wrap } from "~/types/generic";
 
-  import Edit from "~/icons/Edit.svelte";
-  import Remove from "~/icons/Remove.svelte";
+  import { Edit, Close } from "@steeze-ui/remix-icons";
   import PanelIcon from "~/components/common/PanelIcon.svelte";
   import Actionable from "../common/Actionable.svelte";
 
@@ -39,13 +38,13 @@
 
 <div
   transition:fly|local={{ y: 10 }}
-  class={classList(
+  class={twMerge(
     "flex h-full",
     type === "left" ? "justify-start" : "",
     type === "right" ? "justify-end" : ""
   )}
 >
-  <div
+  <button
     on:click={() => {
       if (chosen) return;
       if (isTouch() && !hovered) {
@@ -60,7 +59,7 @@
     on:mouseover={onfocus(true)}
     on:blur={onfocus(false)}
     on:mouseleave={onfocus(false)}
-    class={classList(
+    class={twMerge(
       "flex items-center justify-center h-full",
       "border-slate-900 transition-all duration-500",
       selected ? "" : "hover:cursor-pointer",
@@ -83,7 +82,7 @@
         </h3>
       </div>
       <div
-        class={classList(
+        class={twMerge(
           "absolute top-[100%] h-fit w-full",
           "flex justify-center hover:cursor-default"
         )}
@@ -107,10 +106,10 @@
               chosen = true;
             }}
           >
-            <PanelIcon className="w-4 h-4 m-1" icon={Remove} styleActionable />
+            <PanelIcon className="w-4 h-4 m-1" icon={Close} styleActionable />
           </Actionable>
         </div>
       </div>
     {/if}
-  </div>
+  </button>
 </div>

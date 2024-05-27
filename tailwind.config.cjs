@@ -1,14 +1,11 @@
 module.exports = {
-  content: [
-    "public/index.html",
-    "src/**/*.svelte"
-  ],
+  content: ["public/index.html", "src/**/*.svelte"],
   theme: {
     extend: {
       screens: {
-        "xs": "400px"
-      }
-    }
+        xs: "400px",
+      },
+    },
   },
   plugins: [],
-}
+};

@@ -7,9 +7,11 @@
   import BoxComponent from "~/components/rendering/Box.svelte";
   import Panel from "~/components/common/Panel.svelte";
   import Image from "~/components/common/Image.svelte";
-  import ArrowUp from "~/icons/ArrowUp.svelte";
   import Position from "~/wrappers/Position.svelte";
   import Actionable from "../common/Actionable.svelte";
+
+  import { ArrowUp } from "@steeze-ui/remix-icons";
+  import { Icon } from "@steeze-ui/svelte-icon";
 
   const dispatcher = createEventDispatcher<{ page: number }>();
 
@@ -83,8 +85,9 @@
   <div class="flex">
     <Actionable on:click={left}>
       <Panel styleActionable={page > 0} rounded="rounded-full" className="mx-2">
-        <ArrowUp
-          className={classList(
+        <Icon
+          src={ArrowUp}
+          class={classList(
             "p-2 w-10 h-10 -rotate-90 transition-all",
             page > 0 ? "" : "fill-slate-600"
           )}
@@ -100,8 +103,9 @@
         rounded="rounded-full"
         className="mx-2"
       >
-        <ArrowUp
-          className={classList(
+        <Icon
+          src={ArrowUp}
+          class={classList(
             "p-2 w-10 h-10 rotate-90 transition-all",
             page < piece.pages.length - 1 ? "" : "fill-slate-600"
           )}

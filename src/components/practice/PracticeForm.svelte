@@ -2,10 +2,11 @@
   import { createEventDispatcher } from "svelte";
   import type { Section } from "~/proto/local/data";
   import { toolNames } from "~/types/generic";
+  import { Link } from "@steeze-ui/remix-icons";
+  import { Icon } from "@steeze-ui/svelte-icon";
 
   import FormPanel from "~/form/FormPanel.svelte";
   import Label from "~/form/Label.svelte";
-  import Link from "~/icons/Link.svelte";
   import TaskState from "./TaskState.svelte";
   import LinkButton from "~/form/LinkButton.svelte";
 
@@ -35,7 +36,7 @@
                   <Label preset="h3">{toolNames[t]}</Label>
                 {/each}
               </div>
-              <Link className="w-5 h-5 mt-1 ml-2" />
+              <Icon src={Link} class="w-5 h-5 mt-1 ml-2" />
             </div>
           {/if}
         {/key}

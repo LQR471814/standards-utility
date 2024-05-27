@@ -1,7 +1,7 @@
 <script lang="ts">
   import { v4 } from "uuid";
   import { getDocument } from "pdfjs-dist";
-  import { messageKey } from "~/globals"
+  import { messageKey } from "~/globals";
 
   import { fade, fly } from "svelte/transition";
 
@@ -11,12 +11,10 @@
   import { arrayRequired } from "~/common/validators";
 
   import type { Page, Piece } from "~/proto/local/data";
-  import { imageStore } from "~/store/image";
+  import { imageStore } from "~/state/image";
 
   import Uploader from "~/utility/Uploader.svelte";
   import Panel from "~/components/common/Panel.svelte";
-  import Remove from "~/icons/Remove.svelte";
-  import PlaylistAdd from "~/icons/PlaylistAdd.svelte";
   import TextInput from "~/form/TextInput.svelte";
   import AddButton from "~/components/common/AddButton.svelte";
   import Submission from "~/form/Submission.svelte";
@@ -24,6 +22,9 @@
   import FormPanel from "~/form/FormPanel.svelte";
   import Labeled from "~/form/Labeled.svelte";
   import Actionable from "~/components/common/Actionable.svelte";
+  import { Icon } from "@steeze-ui/svelte-icon";
+  import { Close, PlayListAdd } from "@steeze-ui/remix-icons";
+  import { state } from "~/state";
 
   export let piece: Piece;
   export let title: string;
@@ -32,7 +33,6 @@
     submit: Piece | null;
   }>();
 
-  const { showMessage } = getContext(messageKey);
   const config = { validateOnChange: true };
 
   const name = field("name", piece.name, [required()], config);
@@ -55,7 +55,7 @@
             if (f.type === "application/pdf") {
               const pages: Page[] = [];
 
-              showMessage("loading pdf...");
+              $state.message = "loading pdf...";
               const doc = await getDocument(bytes).promise;
               for (let i = 1; i < doc.numPages + 1; i++) {
                 const page = await doc.getPage(i);
@@ -82,7 +82,7 @@
                 });
               }
 
-              showMessage(undefined);
+              $state.message = "";
               return pages;
             } else {
               return [
@@ -133,7 +133,7 @@
           <Panel styleActionable rounded="rounded-full">
             {#if hovered}
               <div in:fade|local={{ duration: 300 }}>
-                <Remove className="w-10 h-10 p-2" />
+                <Icon src={Close} class="w-10 h-10 p-2" />
               </div>
             {:else}
               <p
@@ -150,7 +150,7 @@
   {/each}
   {#if $pages.value.length === 0}
     <div class="m-auto centered flex-col">
-      <PlaylistAdd className="w-12 h-12 mb-5" />
+      <Icon src={PlayListAdd} class="w-12 h-12 mb-5" />
       <p class="font-semibold max-w-xs text-center">
         use the plus at the bottom right to add a page!
       </p>

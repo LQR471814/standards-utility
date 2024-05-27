@@ -1,9 +1,10 @@
 <script lang="ts">
+  import { ArrowUp } from "@steeze-ui/remix-icons";
+  import { Icon } from "@steeze-ui/svelte-icon";
   import { onMount } from "svelte";
   import { resize } from "~/common/actions";
 
   import { classList } from "~/common/general";
-  import ArrowUp from "~/icons/ArrowUp.svelte";
 
   export let label = "";
   export let className = "";
@@ -26,7 +27,7 @@
     grow ? "w-full" : ""
   )}
 >
-  <div
+  <button
     class="flex mb-2 hover:cursor-pointer"
     on:click={() => (expanded = !expanded)}
   >
@@ -40,9 +41,9 @@
         "transition-all"
       )}
     >
-      <ArrowUp className="w-6 h-6" />
+      <Icon src={ArrowUp} class="w-6 h-6" />
     </div>
-  </div>
+  </button>
   <div
     class={classList(
       "overflow-y-hidden transition-all duration-300",

@@ -3,9 +3,8 @@
   import { fly } from "svelte/transition";
   import { classList, debounce, styleList } from "~/common/general";
 
-  import Reset from "~/icons/Reset.svelte";
-  import ThumbsDown from "~/icons/ThumbsDown.svelte";
-  import ThumbsUp from "~/icons/ThumbsUp.svelte";
+  import { Restart, ThumbDown, ThumbUp } from "@steeze-ui/remix-icons";
+  import { Icon } from "@steeze-ui/svelte-icon";
 
   const dispatcher = createEventDispatcher<{ drop: void }>();
   const onclick = debounce(() => {
@@ -32,7 +31,7 @@
         : `translateY(${translateBy})`,
   })}
 >
-  <div
+  <button
     class={classList(
       "absolute h-16 transition-all hover:cursor-pointer",
       `flex justify-center ${direction === "up" ? "items-end" : "items-start"}`,
@@ -48,12 +47,12 @@
       transition:fly={{ y: direction === "up" ? -10 : 10, duration: 300 }}
     >
       {#if mode === "up"}
-        <ThumbsUp />
+        <Icon src={ThumbUp} />
       {:else if mode === "down"}
-        <ThumbsDown />
+        <Icon src={ThumbDown} />
       {:else if mode === "reset"}
-        <Reset />
+        <Icon src={Restart} />
       {/if}
     </div>
-  </div>
+  </button>
 </div>

@@ -6,7 +6,7 @@
   import AddButton from "~/components/common/AddButton.svelte";
   import Route from "~/components/common/Route.svelte";
 
-  import { pieces } from "~/store/pieces";
+  import { pieces } from "~/state";
   import PieceCreator from "~/screens/PieceCreator.svelte";
   import Position from "~/wrappers/Position.svelte";
   import PiecePractice from "~/screens/PiecePractice/PiecePractice.svelte";
@@ -31,7 +31,7 @@
   <Route>
     <PieceBrowser
       on:delete={(p) => {
-        pieces.remove(p.detail);
+        delete $pieces[p.detail.id];
       }}
       on:edit={(p) => {
         route = {
@@ -58,7 +58,7 @@
     <PieceCreator
       on:submit={(p) => {
         if (p.detail) {
-          pieces.add(p.detail);
+          $pieces[p.detail.id] = p.detail;
         }
         route = { type: Routes.BROWSING };
       }}

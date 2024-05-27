@@ -1,9 +1,9 @@
 <script lang="ts">
+  import { Information } from "@steeze-ui/remix-icons";
+  import { Icon } from "@steeze-ui/svelte-icon";
   import { createEventDispatcher } from "svelte";
   import { slide } from "svelte/transition";
   import { classList } from "~/common/general";
-
-  import Information from "~/icons/Information.svelte";
 
   const dispatcher = createEventDispatcher<{ input: string }>();
 
@@ -34,20 +34,16 @@
       }
       dispatcher("input", value);
     }}
-    class={classList("bg-transparent rounded-sm text-slate-900", className)}
+    class={classList(
+      "bg-transparent rounded-sm text-slate-900 outline-none w-[180px]",
+      className
+    )}
   />
 
   {#if error}
     <div transition:slide|local class="flex items-center">
-      <Information className="w-4 h-4 fill-red-500 mr-1" />
+      <Icon src={Information} class="w-4 h-4 fill-red-500 mr-1" />
       <p class="text-red-500 mb-1">{error}</p>
     </div>
   {/if}
 </div>
-
-<style>
-  input {
-    outline: none;
-    width: 180px;
-  }
-</style>

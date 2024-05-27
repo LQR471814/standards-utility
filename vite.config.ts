@@ -1,14 +1,14 @@
-import { resolve } from "path"
-import { defineConfig } from 'vite';
-import mkcert from "vite-plugin-mkcert"
-import sveltePreprocess from 'svelte-preprocess'
+import { resolve } from "path";
+import { defineConfig } from "vite";
+import mkcert from "vite-plugin-mkcert";
+import sveltePreprocess from "svelte-preprocess";
 
-import { svelte } from '@sveltejs/vite-plugin-svelte';
-import { replaceCodePlugin } from "vite-plugin-replace"
-import { viteStaticCopy } from "vite-plugin-static-copy"
+import { svelte } from "@sveltejs/vite-plugin-svelte";
+import { viteStaticCopy } from "vite-plugin-static-copy";
 import { VitePWA } from "vite-plugin-pwa";
 
-const platform = process.env.PLATFORM;
+import tailwind from "tailwindcss";
+import autoprefixer from "autoprefixer";
 
 export default defineConfig({
   root: "src",
@@ -19,31 +19,25 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "~": resolve(__dirname, "src")
+      "~": resolve(__dirname, "src"),
     },
   },
   plugins: [
     viteStaticCopy({
-      targets: [{
-        src: "../node_modules/pdfjs-dist/build/pdf.worker.js",
-        dest: "workers",
-      }]
-    }),
-    replaceCodePlugin({
-      replacements: [
-        { from: "kPlatform", to: platform ?? "web" }
-      ]
+      targets: [
+        {
+          src: "../node_modules/pdfjs-dist/build/pdf.worker.js",
+          dest: "workers",
+        },
+      ],
     }),
     svelte({
       preprocess: sveltePreprocess({
         sourceMap: true,
         postcss: {
-          plugins: [
-            require('tailwindcss')(),
-            require('autoprefixer')(),
-          ],
+          plugins: [tailwind(), autoprefixer()],
         },
-      })
+      }),
     }),
     VitePWA({
       registerType: "autoUpdate",
@@ -72,14 +66,14 @@ export default defineConfig({
             type: "image/png",
           },
           {
-            src: 'icons/android-chrome-512x512.png',
-            sizes: '512x512',
-            type: 'image/png',
-            purpose: 'any maskable'
-          }
-        ]
-      }
+            src: "icons/android-chrome-512x512.png",
+            sizes: "512x512",
+            type: "image/png",
+            purpose: "any maskable",
+          },
+        ],
+      },
     }),
     mkcert(),
-  ]
-})
+  ],
+});

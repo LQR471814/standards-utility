@@ -5,14 +5,14 @@
   import { isTouch } from "~/common/platform";
   import { classList } from "~/common/general";
 
-  import { pieces } from "~/store/pieces";
-  import { imageStore } from "~/store/image";
+  import { pieces } from "~/state";
+  import { imageStore } from "~/state/image";
   import type { Piece } from "~/proto/local/data";
 
   import Panel from "~/components/common/Panel.svelte";
-  import Edit from "~/icons/Edit.svelte";
-  import Remove from "~/icons/Remove.svelte";
   import Actionable from "~/components/common/Actionable.svelte";
+  import { Icon } from "@steeze-ui/svelte-icon";
+  import { Close, Edit } from "@steeze-ui/remix-icons";
 
   const dispatcher = createEventDispatcher<{
     choose: Piece;
@@ -22,15 +22,17 @@
 
   let clicked = 0;
 
+  $: pieceList = Object.values($pieces);
+
   onDestroy(() => {
-    for (const p of $pieces) {
+    for (const p of pieceList) {
       imageStore.release(p.pages[0].image);
     }
   });
 </script>
 
 <div class="flex flex-wrap items-start justify-center h-full sm:justify-start">
-  {#each $pieces as p (p.id)}
+  {#each pieceList as p (p.id)}
     <div
       transition:fly|local={{ x: -10 }}
       animate:flip={{ duration: 400 }}
@@ -60,7 +62,7 @@
           />
           {#if hovered}
             <div class="absolute p-centered">
-              <div
+              <button
                 transition:fly|local={{ y: 5 }}
                 on:click={(e) => {
                   e.stopPropagation();
@@ -72,10 +74,10 @@
                   className="p-1 my-1"
                   styleActionable
                 >
-                  <Remove />
+                  <Icon src={Close} />
                 </Panel>
-              </div>
-              <div
+              </button>
+              <button
                 transition:fly|local={{ y: -5 }}
                 on:click={(e) => {
                   e.stopPropagation();
@@ -87,9 +89,9 @@
                   className="p-1 my-1"
                   styleActionable
                 >
-                  <Edit />
+                  <Icon src={Edit} />
                 </Panel>
-              </div>
+              </button>
             </div>
           {/if}
         </Panel>
@@ -100,7 +102,7 @@
       <h4>{p.author}</h4>
     </div>
   {/each}
-  {#if $pieces.length === 0}
+  {#if pieceList.length === 0}
     <h4 class="m-auto font-semibold">
       there are no pieces to practice at the moment
     </h4>

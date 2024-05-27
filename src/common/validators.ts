@@ -3,6 +3,6 @@ export function arrayRequired() {
     return {
       valid: value.length > 0,
       name: "required",
-    }
-  }
+    };
+  };
 }

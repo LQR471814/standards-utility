@@ -2,20 +2,14 @@
   "compilerOptions": {
     "strict": true,
     "noImplicitAny": true,
-    "module": "esnext",
+    "module": "ESNext",
     "baseUrl": "src",
+    "lib": ["DOM", "ESNext"],
     "paths": {
       "~/*": ["*"]
-    },
+    }
   },
   "extends": "@tsconfig/svelte/tsconfig.json",
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules/*",
-    "__sapper__/*",
-    "public/*",
-    "src/~/proto/*"
-  ]
+  "include": ["src/**/*", "vite.config.ts"],
+  "exclude": ["node_modules/*", "__sapper__/*", "public/*", "src/~/proto/*"]
 }

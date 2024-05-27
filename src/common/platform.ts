@@ -1,19 +1,11 @@
-export const enum Platform {
-  WEB = "web",
-  DESKTOP = "desktop",
-  MOBILE = "mobile",
-}
-
-export const target = "kPlatform" as Platform
-
-let touch: boolean | undefined
+let touch: boolean | undefined;
 export function isTouch() {
   if (touch === undefined) {
-    const mediaList = window.matchMedia("(pointer: coarse)")
-    touch = mediaList.matches
+    const mediaList = window.matchMedia("(pointer: coarse)");
+    touch = mediaList.matches;
     mediaList.onchange = (value) => {
-      touch = value.matches
-    }
+      touch = value.matches;
+    };
   }
-  return touch
+  return touch;
 }

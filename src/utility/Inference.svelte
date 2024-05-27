@@ -2,10 +2,10 @@
   import { createEventDispatcher } from "svelte";
   import type { Tensor } from "@tensorflow/tfjs";
 
-  import { measureModelPB } from "~/store/models";
-  import { imageStore } from "~/store/image";
+  import { measureModelPB } from "~/state/models";
+  import { imageStore } from "~/state/image";
 
-  import type { Box } from "~/proto/local/data";
+  import type { Box } from "~/proto/local/generic";
   import { tfjs } from "~/globals";
 
   export let image: Uint8Array;

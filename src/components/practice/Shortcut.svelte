@@ -4,9 +4,8 @@
 
   import FormPanel from "~/form/FormPanel.svelte";
   import Panel from "../common/Panel.svelte";
-  import ThumbsUp from "~/icons/ThumbsUp.svelte";
-  import ThumbsDown from "~/icons/ThumbsDown.svelte";
-  import Reset from "~/icons/Reset.svelte";
+  import { ThumbUp, ThumbDown, Restart } from "@steeze-ui/remix-icons";
+  import { Icon } from "@steeze-ui/svelte-icon";
 
   const dispatcher = createEventDispatcher<{
     increment: boolean;
@@ -29,7 +28,7 @@
         bare
         on:click={() => dispatcher("increment", true)}
       >
-        <ThumbsUp />
+        <Icon src={ThumbUp} />
       </Panel>
       <Panel
         className="hover:-translate-y-1 active:translate-y-0"
@@ -37,7 +36,7 @@
         bare
         on:click={() => dispatcher("increment", false)}
       >
-        <ThumbsDown />
+        <Icon src={ThumbDown} />
       </Panel>
       <Panel
         className="hover:-translate-y-1 active:translate-y-0"
@@ -45,7 +44,7 @@
         bare
         on:click={() => dispatcher("reset")}
       >
-        <Reset />
+        <Icon src={Restart} />
       </Panel>
     </div>
   </FormPanel>

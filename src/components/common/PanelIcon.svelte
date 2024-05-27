@@ -1,10 +1,11 @@
 <script lang="ts">
-  import type { SvelteComponent } from "svelte";
-  import { classList } from "~/common/general";
+  import { Icon } from "@steeze-ui/svelte-icon";
+  import type { IconSource } from "@steeze-ui/svelte-icon/types";
+  import { twMerge } from "tailwind-merge";
 
   import Panel from "~/components/common/Panel.svelte";
 
-  export let icon: typeof SvelteComponent;
+  export let icon: IconSource;
 
   export let containerName = "";
   export let className = "";
@@ -17,7 +18,7 @@
   {bare}
   {styleActionable}
   rounded="rounded-full"
-  className={classList("w-fit h-fit centered mx-1", containerName)}
+  className={twMerge("w-fit h-fit centered mx-1", containerName)}
 >
-  <svelte:component this={icon} className={classList("m-2", className)} />
+  <Icon src={icon} class={twMerge("m-2", className)} />
 </Panel>
